@@ -35,15 +35,18 @@ function handleSubmit(e) {
 }
 function createTodo(todo) {
     const newLi = document.createElement('li');
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.checked = todo.completed;
-    checkbox.addEventListener('change', function () {
-        todo.completed = checkbox.checked;
+    const textSpan = document.createElement('span');
+    textSpan.className = 'todo-text';
+    textSpan.textContent = todo.text;
+    newLi.append(textSpan);
+    if (todo.completed) {
+        newLi.classList.add('completed');
+    }
+    newLi.addEventListener('click', function () {
+        todo.completed = !todo.completed;
+        newLi.classList.toggle('completed', todo.completed);
         saveTodos();
     });
-    newLi.append(todo.text);
-    newLi.append(checkbox);
     list.append(newLi);
 }
 function removeTodos() {

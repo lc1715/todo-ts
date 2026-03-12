@@ -1,12 +1,238 @@
-h1{
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: radial-gradient(circle at top left, #fce7f3, #fff7ed 55%);
+    color: #0f172a;
+}
+
+h1 {
     text-align: center;
+    font-size: 2rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 1rem;
 }
 
 #container {
+    width: 100%;
+    max-width: 420px;
+    padding: 2rem 2.25rem 2.5rem;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 1.25rem;
+    box-shadow:
+        0 20px 45px rgba(2, 132, 199, 0.12),
+        0 0 0 1px rgba(2, 132, 199, 0.12);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+}
+
+#todoform {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+#todoinput {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(2, 132, 199, 0.25);
+    background: rgba(248, 250, 252, 0.95);
+    color: #0f172a;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+
+#todoinput::placeholder {
+    color: rgba(15, 23, 42, 0.5);
+}
+
+#todoinput:focus {
+    border-color: #06b6d4;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.22);
+    background: rgba(255, 255, 255, 1);
+}
+
+#addbtn,
+#removebtn {
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition: transform 0.08s ease, box-shadow 0.12s ease, background 0.16s ease, opacity 0.16s ease;
+}
+
+#addbtn {
+    background: linear-gradient(135deg, #34d399, #22c55e);
+    color: #052e16;
+    box-shadow: 0 14px 28px rgba(16, 185, 129, 0.28);
+}
+
+#addbtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 34px rgba(16, 185, 129, 0.33);
+}
+
+#addbtn:active {
+    transform: translateY(0);
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.25);
+}
+
+#removeform {
+    display: flex;
+    justify-content: flex-end;
 }
 
 #removebtn {
-    margin-left: 15px;
+    background: rgba(239, 68, 68, 0.08);
+    color: #991b1b;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+#removebtn:hover {
+    background: rgba(239, 68, 68, 0.14);
+    opacity: 0.95;
+}
+
+#removebtn:active {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+#todolist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-top: 0.25rem;
+    max-height: 260px;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+}
+
+#todolist li {
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.65rem;
+    background: rgba(248, 250, 252, 1);
+    border: 1px solid rgba(2, 132, 199, 0.18);
+    font-size: 0.92rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #0f172a;
+    cursor: pointer;
+    transition: border-color 0.12s ease, background 0.12s ease, opacity 0.12s ease;
+    position: relative;
+}
+
+#todolist li .todo-text {
+    position: relative;
+    display: inline;
+}
+
+#todolist li:hover {
+    border-color: rgba(6, 182, 212, 0.9);
+    background: rgba(224, 242, 254, 0.75);
+}
+
+#todolist li.completed {
+    opacity: 0.6;
+}
+
+#todolist li.completed .todo-text::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: currentColor;
+    top: 52%;
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 1.5rem;
+    }
+
+    #container {
+        padding: 1.6rem 1.5rem 2rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    #container {
+        max-width: 630px;
+        padding: 2.4rem 2.6rem 2.8rem;
+        gap: 1.4rem;
+    }
+
+    h1 {
+        font-size: 2.35rem;
+        margin-bottom: 1.25rem;
+    }
+
+    #todoinput {
+        font-size: 1.05rem;
+        padding: 0.9rem 1.05rem;
+    }
+
+    #addbtn,
+    #removebtn {
+        font-size: 0.98rem;
+        padding: 0.75rem 1.05rem;
+    }
+
+    #todolist li {
+        font-size: 1.02rem;
+        padding: 0.7rem 0.85rem;
+    }
+
+    #todolist {
+        max-height: min(420px, calc(100vh - 14rem));
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1368px) {
+    #container {
+        max-width: 700px;
+        padding: 2.6rem 3rem 3rem;
+        gap: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.3rem;
+    }
+
+    #todoinput {
+        font-size: 1.08rem;
+        padding: 1rem 1.1rem;
+    }
+
+    #addbtn,
+    #removebtn {
+        font-size: 1rem;
+        padding: 0.8rem 1.1rem;
+    }
+
+    #todolist li {
+        font-size: 1.05rem;
+        padding: 0.75rem 0.9rem;
+    }
 }
